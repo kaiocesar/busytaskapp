@@ -15,6 +15,7 @@ app.controller('mainController', function($scope){
   var tasks = new getTasks();
   $scope.tasks = tasks.items;
   $scope.showMarked = false;
+  $scope.showDeleteButton = false;
 
   $scope.onMarkTask = function(item){
       item.status = !item.status;
@@ -26,6 +27,10 @@ app.controller('mainController', function($scope){
 
   $scope.removeTask = function(item) {
     tasks.removeTasks(item);
-  }
+  };
+
+  $scope.showDeleteButtons = function() {
+    $scope.showDeleteButton = !$scope.showDeleteButton;
+  };
 
 });

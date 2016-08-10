@@ -50,7 +50,10 @@
       </ion-footer-bar>
 
       <ion-content>
-          <ion-list show-delete="true">
+
+          <button class="button button-assertive button-full" ng-click="showDeleteButtons()">Remove</button>
+
+          <ion-list show-delete="showDeleteButton">
             <ion-item class="item" ng-repeat="task in tasks track by $index" ng-hide="showTask(task)">
                 <div class="row">
                   <div class="col col-90">{{task.name}} <ion-delete-button class="ion-minus-circled" ng-click="removeTask(task)"></ion-delete-button></div>
