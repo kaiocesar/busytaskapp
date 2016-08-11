@@ -22,11 +22,19 @@ app.controller('mainController', function($scope, $ionicPopup){
   };
 
   $scope.showAddTask = function(){
+
+    $scope.data = {};
+
     $ionicPopup.show({
       title: "Add a new task",
-      template: "<input type='text' placeholder='Task name' autofocus='true' />",
+      scope: $scope,
+      template: "<input type='text' placeholder='Task name' autofocus='true' ng-model='data.newTask' />",
       buttons: [
-        {text: "Ok"},
+        {text: "Ok",
+          onTap: function(e){
+              var task = {name: $scope.data.newTask, status: false};
+              tasks.addTasks(task);
+          }},
         {text: "Cancel"}
       ]
     });

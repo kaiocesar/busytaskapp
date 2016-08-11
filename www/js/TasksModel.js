@@ -7,10 +7,14 @@ function getTasks(){
     {name: "Item name 05", status: true}
   ];
 
+  this.addTasks = function(item){
+    this.items.push(item);
+  };
+
   this.removeTasks = function(item) {
       var pos = this.items.indexOf(item);
       this.items.splice(pos,1);
   };
 
-  
+
 }
