@@ -11,7 +11,7 @@ app.run(function($ionicPlatform) {
   });
 })
 
-app.controller('mainController', function($scope){
+app.controller('mainController', function($scope, $ionicPopup){
   var tasks = new getTasks();
   $scope.tasks = tasks.items;
   $scope.showMarked = false;
@@ -19,6 +19,17 @@ app.controller('mainController', function($scope){
 
   $scope.onMarkTask = function(item){
       item.status = !item.status;
+  };
+
+  $scope.showAddTask = function(){
+    $ionicPopup.show({
+      title: "Add a new task",
+      template: "<input type='text' placeholder='Task name' autofocus='true' />",
+      buttons: [
+        {text: "Ok"},
+        {text: "Cancel"}
+      ]
+    });
   };
 
   $scope.showTask = function(item) {
