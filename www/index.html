@@ -51,9 +51,14 @@
 
       <ion-content>
 
-          <button class="button button-positive button-full" ng-click="showAddTask()">Add</button>
-
-          <button class="button button-assertive button-full" ng-click="showDeleteButtons()">Remove</button>
+        <div class="row">
+          <div class="col col-50">
+            <button class="button button-positive button-full" ng-click="showAddTask()">Add</button>
+          </div>
+          <div class="col col-50">
+            <button class="button button-assertive button-full" ng-click="showDeleteButtons()">Remove</button>
+          </div>
+        </div>
 
           <ion-list show-delete="showDeleteButton">
             <ion-item class="item" ng-repeat="task in tasks track by $index" ng-hide="showTask(task)">
