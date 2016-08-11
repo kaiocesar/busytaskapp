@@ -36,6 +36,7 @@ app.controller('mainController', function($scope, $ionicPopup){
               var task = {name: item.name, status: false};
               if (type) {
                 tasks.addTasks(task);
+                tasks.saveTasks(task);
               }
           }},
         {text: "Cancel"}
@@ -58,6 +59,7 @@ app.controller('mainController', function($scope, $ionicPopup){
 
   $scope.removeTask = function(item) {
     tasks.removeTasks(item);
+    tasks.saveTasks();
   };
 
   $scope.showDeleteButtons = function() {
