@@ -63,7 +63,10 @@
           <ion-list show-delete="showDeleteButton">
             <ion-item class="item" ng-repeat="task in tasks track by $index" ng-hide="showTask(task)">
                 <div class="row">
-                  <div class="col col-90">{{task.name}} <ion-delete-button class="ion-minus-circled" ng-click="removeTask(task)"></ion-delete-button></div>
+                  <div class="col col-90">{{task.name}}
+                    <ion-delete-button class="ion-minus-circled" ng-click="removeTask(task)"></ion-delete-button>
+                    <ion-option-button class="button button-positive" ng-click="editTask(task)">Edit</ion-option-button>
+                  </div>
                   <div class="col col-10">
                     <button type="button" ng-click="onMarkTask(task)" class="button button-small button-outline button-positive" name="button">
                       <i ng-show="task.status" class="icon ion-checkmark"></i>

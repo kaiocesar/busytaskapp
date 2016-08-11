@@ -21,9 +21,9 @@ app.controller('mainController', function($scope, $ionicPopup){
       item.status = !item.status;
   };
 
-  $scope.showAddTask = function(){
-
+  function getItemTask(item, type) {
     $scope.data = {};
+    $scope.data.newTask = (!type) ? item.name : "";
 
     $ionicPopup.show({
       title: "Add a new task",
@@ -32,16 +32,28 @@ app.controller('mainController', function($scope, $ionicPopup){
       buttons: [
         {text: "Ok",
           onTap: function(e){
-              var task = {name: $scope.data.newTask, status: false};
-              tasks.addTasks(task);
+              item.name = $scope.data.newTask;
+              var task = {name: item.name, status: false};
+              if (type) {
+                tasks.addTasks(task);
+              }
           }},
         {text: "Cancel"}
       ]
     });
+  }
+
+  $scope.showAddTask = function(){
+    var item = {};
+    getItemTask(item, true);
   };
 
   $scope.showTask = function(item) {
     return item.status && !$scope.showMarked;
+  };
+
+  $scope.editTask = function(item) {
+    getItemTask(item, false);
   };
 
   $scope.removeTask = function(item) {
