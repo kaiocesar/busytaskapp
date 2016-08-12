@@ -24,24 +24,30 @@ app.controller('mainController', function($scope, $ionicPopup){
   function getItemTask(item, type) {
     $scope.data = {};
     $scope.data.newTask = (!type) ? item.name : "";
+    var title = "Add a new task";
+    if (!type) {
+      title = "Update a task";
+    }
+      $ionicPopup.show({
+        title: title,
+        scope: $scope,
+        template: "<input type='text' placeholder='Task name' autofocus='true' ng-model='data.newTask' />",
+        buttons: [
+          {text: "Ok",
+            onTap: function(e){
+                item.name = $scope.data.newTask;
+                if (item.name) {
+                  var task = {name: item.name, status: false};
+                  if (type) {
+                    tasks.addTasks(task);
+                  }
+                  tasks.saveTasks(task);
+                }
+            }},
+          {text: "Cancel"}
+        ]
+      });
 
-    $ionicPopup.show({
-      title: "Add a new task",
-      scope: $scope,
-      template: "<input type='text' placeholder='Task name' autofocus='true' ng-model='data.newTask' />",
-      buttons: [
-        {text: "Ok",
-          onTap: function(e){
-              item.name = $scope.data.newTask;
-              var task = {name: item.name, status: false};
-              if (type) {
-                tasks.addTasks(task);
-                tasks.saveTasks(task);
-              }
-          }},
-        {text: "Cancel"}
-      ]
-    });
   }
 
   $scope.showAddTask = function(){
